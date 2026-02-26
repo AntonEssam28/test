@@ -12,7 +12,7 @@ import {
 
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { tokenContext } from "../../../Context/tokenContext";
+import { tokenContext } from '../../../Context/tokenContext'
 import Photo from '../../../../src/assets/images/route.png'
 
 export default function NavbarComponent() {

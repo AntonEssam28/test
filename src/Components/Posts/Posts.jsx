@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import CardPost from '../Shared/CardPost/CardPost';
 import Loading from '../Shared/Loadig/Loading';
-import { tokenContext } from '../../Context/tokenContext';
+import { tokenContext } from '../../../Context/tokenContext'
 import { BaseUrl } from '../../env/env.environment';
 
 export default function Posts({ activeTab }) {
