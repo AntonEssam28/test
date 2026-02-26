@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderCard from "../HeaderCard/HeaderCard";
+import HeaderCard from "../../Shared/HEaderCard/HeaderCard";
 import Comments from "../Comments/Comments";
 
 
