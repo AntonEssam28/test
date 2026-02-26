@@ -54,7 +54,7 @@ export default function Posts({ activeTab }) {
   }
 
   return (
-    <div>
+    <div className='space-y-4'>
       {posts.map((post) => (
         <div key={post._id} onClick={() => goToPostDetails(post._id)} className="cursor-pointer">
           <CardPost post={post} />
