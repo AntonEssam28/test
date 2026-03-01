@@ -6,7 +6,7 @@ export const tokenContext = createContext();
 
 export function TokenContextProvider({ children }) {
 
-  // lazy initialization
+
   const [userToken, setToken] = useState(() => localStorage.getItem("token"));
 
   const [userData, setUserData] = useState(null);
@@ -28,11 +28,8 @@ export function TokenContextProvider({ children }) {
       })
       .catch((err) => {
         console.error("Error fetching profile data", err);
-        // ممكن هنا لو الـ token مش valid تمسحه:
-        // localStorage.removeItem('token');
-        // setToken(null);
       });
-  }, [userToken]); // مهم: نعتمد على userToken مش [] بس
+  }, [userToken]); 
 
   return (
     <tokenContext.Provider
@@ -40,7 +37,7 @@ export function TokenContextProvider({ children }) {
         userToken,
         setToken,
         userData,
-        setUserData, // ده اللي هنستخدمه في Profile علشان نحدّث الصورة
+        setUserData,
       }}
     >
       {children}

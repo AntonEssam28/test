@@ -31,7 +31,6 @@ export default function SuggestedFriends() {
 
       console.log("Suggestions Response:", response.data);
 
-      // ✅ الصحيح حسب الريسبونس
       return response.data.data?.suggestions || [];
     },
     enabled: !!userToken,

@@ -30,9 +30,7 @@ let { data, isLoading, isError, isFetching } = useQuery({
     select: (data) => data?.post
 })
 
-    // useEffect(()=>{
-    //     getSinglePost()
-    // })
+ 
 
 
     if(isLoading){

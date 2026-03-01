@@ -12,7 +12,7 @@ import { BaseUrl } from '../../env/env.environment';
 export default function Profile() {
   const { userData, userToken, setUserData } = useContext(tokenContext);
   const queryClient = useQueryClient();
-  const [activeTab, setActiveTab] = useState('posts'); // 'posts' or 'saved'
+  const [activeTab, setActiveTab] = useState('posts'); 
 
   // ================== Get User Posts ==================
   const getUserPosts = async () => {
@@ -50,7 +50,7 @@ export default function Profile() {
     if (!userData?._id || !userToken) return null;
     
     try {
-      // لو عندك API للـ stats استخدمها، لو لأ استخدم القيم الافتراضية
+
       const { data } = await axios.get(
         `${BaseUrl}/users/${userData._id}/stats`,
         {
@@ -61,7 +61,7 @@ export default function Profile() {
       );
       return data.data;
     } catch (error) {
-      // لو مفيش API، رجّع القيم الافتراضية
+      
       return { 
         followers: 0, 
         following: 0, 
@@ -129,7 +129,7 @@ export default function Profile() {
 
       if (updatedUser) {
         setUserData((prev) => ({ ...prev, ...updatedUser }));
-        // تحديث الكاش بتاع React Query
+    
         queryClient.invalidateQueries(['userStats']);
       }
 
@@ -184,7 +184,7 @@ export default function Profile() {
     const file = e.target.files?.[0];
     if (!file) return;
     
-    // التحقق من حجم الصورة (max 2MB)
+
     if (file.size > 2 * 1024 * 1024) {
       toast.error('Image size should be less than 2MB');
       return;
@@ -197,7 +197,7 @@ export default function Profile() {
     const file = e.target.files?.[0];
     if (!file) return;
     
-    // التحقق من حجم الصورة (max 5MB للـ cover)
+
     if (file.size > 5 * 1024 * 1024) {
       toast.error('Cover image size should be less than 5MB');
       return;
@@ -242,7 +242,7 @@ export default function Profile() {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="container mx-auto px-4 py-6">
-        {/* Cover Section */}
+        
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="relative">
             <img
@@ -251,7 +251,7 @@ export default function Profile() {
               alt="cover"
             />
             
-            {/* Add Cover Button */}
+            
             <label className="absolute top-4 right-4 bg-white text-gray-700 px-4 py-2 rounded-md text-sm font-medium shadow-md hover:bg-gray-50 cursor-pointer">
               {isUploadingCover ? 'Uploading...' : 'Add cover'}
               <input
@@ -264,10 +264,10 @@ export default function Profile() {
             </label>
           </div>
 
-          {/* Profile Info Section */}
+          
           <div className="px-6 pb-6">
             <div className="flex flex-col items-center -mt-16">
-              {/* Avatar */}
+              
               <div className="relative">
                 <img
                   src={userData.photo || 'https://via.placeholder.com/150'}
@@ -295,10 +295,9 @@ export default function Profile() {
                 </label>
               </div>
 
-              {/* Name */}
+              
               <h2 className="mt-4 text-xl font-bold">{userData.name}</h2>
               
-              {/* Stats */}
               <div className="flex justify-center gap-12 mt-4">
                 <div className="text-center">
                   <div className="font-bold text-xl">{stats?.followers || 0}</div>
@@ -314,7 +313,7 @@ export default function Profile() {
                 </div>
               </div>
 
-              {/* Route Posts Member */}
+              
               <div className="mt-4 text-center">
                 <span className="inline-flex items-center gap-1 text-sm text-gray-600">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -325,7 +324,7 @@ export default function Profile() {
                 </span>
               </div>
 
-              {/* About & Links */}
+              
               <div className="flex justify-center gap-6 mt-4">
                 <button className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-md hover:bg-gray-100">
                   About
@@ -355,11 +354,11 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* Main Content Grid */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-          {/* Left Column */}
+          
           <div className="lg:col-span-1 space-y-6">
-            {/* Email Card */}
+          
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
@@ -379,7 +378,7 @@ export default function Profile() {
               </div>
             </div>
 
-            {/* Saved Posts Card */}
+            
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="flex items-center justify-between">
                 <span className="font-medium">SAVED POSTS</span>
@@ -387,7 +386,7 @@ export default function Profile() {
               </div>
             </div>
 
-            {/* MyPosts and Saved Tabs */}
+            
             <div className="bg-white rounded-lg shadow-md p-4">
               <div className="flex gap-4">
                 <button 
@@ -414,19 +413,17 @@ export default function Profile() {
             </div>
           </div>
 
-          {/* Right Column */}
+          
           <div className="lg:col-span-2 space-y-6">
-            {/* Create Post Component - اظهره بس في تبويب MyPosts */}
+            
             {activeTab === 'posts' && <CreatePost />}
 
-            {/* Posts List */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="font-bold mb-4">
                 {activeTab === 'posts' ? 'Your Posts' : 'Saved Posts'}
               </h3>
               
               {activeTab === 'posts' ? (
-                // عرض البوستات العادية
                 posts.length > 0 ? (
                   <div className="space-y-4">
                     {posts.map((post) => (
@@ -439,7 +436,7 @@ export default function Profile() {
                   </p>
                 )
               ) : (
-                // عرض البوستات المحفوظة
+                
                 savedPosts.length > 0 ? (
                   <div className="space-y-4">
                     {savedPosts.map((post) => (

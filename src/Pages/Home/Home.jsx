@@ -2,8 +2,6 @@ import React, { useContext, useState } from 'react';
 import { useNetworkState } from 'react-use';
 import { tokenContext } from '../../Context/tokenContext';
 import SuggestedFriends from '../../Components/SuggestsFriends/SuggestsFriends';
-
-// Components
 import CreatePost from '../../Components/Shared/CreatePost/CreatePost';
 import Posts from '../../Components/Posts/Posts';
 import FeedTabs from '../../Components/FeedTabs/FeedTabs';
@@ -12,7 +10,7 @@ import FeedTabs from '../../Components/FeedTabs/FeedTabs';
 export default function Home() {
   const { online } = useNetworkState();
   const { userData } = useContext(tokenContext);
-  const [activeTab, setActiveTab] = useState('community'); // 'my-posts', 'community', 'saved'
+  const [activeTab, setActiveTab] = useState('community'); 
 
   if (!online) {
     return (
@@ -33,7 +31,7 @@ export default function Home() {
       <div className="bg-gray-100 min-h-screen py-6">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {/* Main Content - 3 أعمدة */}
+
             <div className="lg:col-span-3">
               <FeedTabs 
                 activeTab={activeTab} 
@@ -47,11 +45,9 @@ export default function Home() {
                 
               
               
-              {/* Posts Feed */}
               <Posts activeTab={activeTab} />
             </div>
 
-            {/* Sidebar - عمود واحد */}
             <div className="lg:col-span-1">
               <SuggestedFriends />
             </div>
